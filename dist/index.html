@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Converter</title>
+  </head>
+  <body class="p-5 bg-gray-500">
+    <h1 class="font-bold text-3xl text-center text-gray-700 mb-5">
+      crypto ⇾ currency converter
+    </h1>
+    <form class="w-80 mx-auto flex flex-col items-center">
+      <select
+        class="w-full m-3 rounded-full text-gray-700 text-center shadow-lg"
+        name="crypto"
+        id="crypto"
+      >
+        <option value="" disabled selected>Select crypto</option>
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="LTC">LTC</option>
+      </select>
+
+      <input
+        class="rounded-lg text-gray-700 text-center shadow-lg w-1/2"
+        type="text"
+        placeholder="crypto amount"
+        name="howMany"
+        id="howMany"
+      />
+
+      <select
+        class="w-full m-3 rounded-full text-gray-700 text-center shadow-lg"
+        name="currency"
+        id="currency"
+      >
+        <option value="" disabled selected>Select currency</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="USD">USD</option>
+      </select>
+
+      <input
+        class="m-3 0 my-8 text-center bg-slate-800 text-slate-300 rounded-lg shadow-2xl w-full py-4 font-bold"
+        type="text"
+        value="-  total - "
+        id="result"
+        disabled
+      />
+    </form>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>

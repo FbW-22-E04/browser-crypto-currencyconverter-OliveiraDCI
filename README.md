@@ -1,5 +1,36 @@
 # Currency converter
 
+```
+
+Initiate from terminal:
+
+> npm i
+> npm start
+
+```
+
+```
+Get spot price - Bitcoin / Coinbase
+
+HTTP Request
+
+  GET https://api.coinbase.com/v2/prices/:currency_pair/spot
+  (no authentication or permission required)
+
+Arguments:
+  - Parameter	--> date
+  - Type --> string
+  - Required --> Optional
+  - Description --> For historic spot price, use format YYYY-MM-DD (UTC)
+
+Example request:
+
+
+
+```
+
+# Project exercise goal:
+
 Create a currency converter webpage. The page should convert the given currency to the chosen one.
 
 - The user will be able to select a crypto currency and input the price
