@@ -6,11 +6,11 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "babel": ".node_modules/.bin/babel src -d dist",
+    "babel": ".node_modules/.bin/babel src -d docs",
     "webpack": "webpack-dev-server --config ./webpack.config.js",
     "start_other": "webpack serve --mode=development --open",
     "build_other": "export NODE_ENV=production && webpack",
-    "tailwind": "npx tailwindcss -i ./src/style.css -o ./dist/style.css --watch",
+    "tailwind": "npx tailwindcss -i ./src/style.css -o ./docs/style.css --watch",
     "dev_other": "webpack --watch --mode=development",
     "prod": "webpack --mode=production"
   },

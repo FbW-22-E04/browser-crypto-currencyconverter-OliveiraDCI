@@ -6,12 +6,11 @@ const howMany = document.getElementById("howMany");
 const currency = document.getElementById("currency");
 const result = document.getElementById("result");
 
+let cryptoList = {};
+let currencyList = {};
 let coin;
 let money;
 let icon;
-
-let cryptoList = {};
-let currencyList = {};
 
 let myHeaders = new Headers();
 myHeaders.append("apikey", "GWDeWxF5MuFErUX7ZemrKZW94n9DGpIy");
