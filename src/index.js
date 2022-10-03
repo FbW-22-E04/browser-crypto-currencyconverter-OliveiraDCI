@@ -10,29 +10,55 @@ let coin;
 let money;
 let icon;
 
-const cryptoPrice = {
-  BTC: 20000,
-  ETH: 1300,
-  LTC: 400,
+let cryptoList = {};
+let currencyList = {};
+
+let myHeaders = new Headers();
+myHeaders.append("apikey", "GWDeWxF5MuFErUX7ZemrKZW94n9DGpIy");
+
+let requestOptions = {
+  method: "GET",
+  redirect: "follow",
+  headers: myHeaders,
 };
 
-const currencyPrice = {
-  USD: 1,
-  GBP: 1,
-  EUR: 1,
+let requestOptions2 = {
+  method: "GET",
+  redirect: "follow",
 };
+
+fetch(
+  "https://api.apilayer.com/exchangerates_data/latest?symbols=GBP,EUR,USD&base=USD",
+  requestOptions
+)
+  .then((response) => response.json())
+  .then((data) => {
+    currencyList = data.rates;
+  })
+  .catch((err) => console.log("Error", err));
+
+fetch(
+  `http://api.coinlayer.com/live?access_key=c5279ecafa950e1654ea19356de73183&symbols=BTC,ETH,LTC&target=USD`,
+  requestOptions2
+)
+  .then((response) => response.json())
+  .then((data) => {
+    cryptoList = data.rates;
+  })
+  .catch((err) => console.log("Error", err));
+
+//
 
 crypto.addEventListener("change", (e) => {
   switch (crypto.value) {
     case "BTC":
-      coin = cryptoPrice.BTC;
-
+      coin = cryptoList.BTC;
       break;
     case "ETH":
-      coin = cryptoPrice.ETH;
+      coin = cryptoList.ETH;
       break;
     case "LTC":
-      coin = cryptoPrice.LTC;
+      coin = cryptoList.LTC;
       break;
     default:
       console.log("Select crypto");
@@ -42,15 +68,15 @@ crypto.addEventListener("change", (e) => {
 currency.addEventListener("change", (e) => {
   switch (currency.value) {
     case "EUR":
-      money = currencyPrice.EUR;
+      money = currencyList.EUR;
       icon = "€  ";
       break;
     case "GBP":
-      money = currencyPrice.GBP;
+      money = currencyList.GBP;
       icon = "£  ";
       break;
     case "USD":
-      money = currencyPrice.USD;
+      money = currencyList.USD;
       icon = "$  ";
       break;
     default:
@@ -66,11 +92,18 @@ form.addEventListener("change", () => {
     result.value =
       `1 ${crypto.value}  -  ` +
       icon +
-      (parseInt(money) * parseInt(coin)).toFixed(2);
+      (parseFloat(money) * parseFloat(coin)).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      });
   } else if (money && coin && !Number(isNaN(howMany.value))) {
     result.value =
       `${howMany.value} ${crypto.value}  -  ` +
       icon +
-      (parseInt(money) * parseInt(coin) * howMany.value).toFixed(2);
+      (parseFloat(money) * parseFloat(coin) * howMany.value).toLocaleString(
+        undefined,
+        {
+          maximumFractionDigits: 2,
+        }
+      );
   }
 });
